@@ -1,5 +1,5 @@
 <script setup>
-import LayoutContainer from './components/LayoutContainer.vue'
+import LayoutFooter from './components/LayoutFooter.vue'
 import LayoutHeader from './components/LayoutHeader.vue'
 </script>
 
@@ -9,7 +9,7 @@ import LayoutHeader from './components/LayoutHeader.vue'
     <main class="mt-26 flex-1">
       <RouterView />
     </main>
-    <footer class="bg-white"><LayoutContainer>Подвал</LayoutContainer></footer>
+    <LayoutFooter />
   </div>
 </template>
 

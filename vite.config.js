@@ -6,6 +6,15 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  server: {
+    port: 5174,
+    proxy: {
+      '/posts': {
+        target: 'http://localhost:3002',
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {

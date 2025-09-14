@@ -1,5 +1,12 @@
-<script setup></script>
+<script setup>
+import ArticlesList from '@/components/ArticlesList.vue'
+import LayoutContainer from '@/components/LayoutContainer.vue'
+</script>
 
 <template>
-  <main>Главная</main>
+  <main>
+    <LayoutContainer>
+      <ArticlesList />
+    </LayoutContainer>
+  </main>
 </template>
