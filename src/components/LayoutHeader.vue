@@ -5,7 +5,7 @@ import { faBackward, faCode, faUsers, faFile } from '@fortawesome/free-solid-svg
 import { RouterLink } from 'vue-router'
 </script>
 <template>
-  <header class="fixed top-0 right-0 left-0 bg-white">
+  <header class="fixed top-0 right-0 left-0 z-10 bg-white">
     <LayoutContainer>
       <section class="flex items-center justify-between py-4">
         <div>

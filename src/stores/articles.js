@@ -4,9 +4,9 @@ import { ref } from 'vue'
 export const useArticlesStore = defineStore('articles', () => {
   const articles = ref([])
 
-  const fetchArticles = async () => {
+  const fetchArticles = async (search = '') => {
     try {
-      const response = await fetch('/posts')
+      const response = await fetch(`/posts?search=${search}`)
       if (!response.ok) {
         throw new Error()
       }
