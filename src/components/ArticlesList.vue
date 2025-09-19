@@ -7,7 +7,6 @@ import { RouterLink } from 'vue-router'
 import { formatDate } from '@/utils/dateFormaters'
 
 const articlesStore = useArticlesStore()
-console.log('articlesStore', articlesStore.articles)
 
 onBeforeMount(() => {
   articlesStore.fetchArticles()
