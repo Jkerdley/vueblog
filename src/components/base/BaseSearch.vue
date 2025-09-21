@@ -2,6 +2,7 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, watch } from 'vue'
+import ButtonBase from './BaseButton.vue'
 
 const props = defineProps({
   onSearch: {
@@ -39,15 +40,13 @@ watch(searchQuery, (newQuery) => {
       name="search"
       id=""
       placeholder="Поиск по блогу"
-      class="flex w-full rounded-md border border-gray-300 bg-white p-2 pr-20"
+      class="flex w-full rounded-md border border-gray-300 bg-white p-2 py-2 pr-20"
     />
-    <button
+    <ButtonBase
       type="submit"
-      class="absolute top-[50%] right-0 translate-y-[-50%] cursor-pointer rounded-lg bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-300"
+      class="absolute top-[50%] right-0 translate-y-[-50%] cursor-pointer transition-colors hover:bg-blue-300"
     >
       <FontAwesomeIcon :icon="faMagnifyingGlass" />
-    </button>
+    </ButtonBase>
   </form>
 </template>
-
-<style lang="scss" scoped></style>

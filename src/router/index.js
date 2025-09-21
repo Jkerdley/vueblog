@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      component: () => import('@/views/HomeView.vue'),
     },
     {
       path: '/login',
@@ -14,9 +14,19 @@ const router = createRouter({
       component: () => import('@/views/LoginView.vue'),
     },
     {
+      path: '/registration',
+      name: 'registration',
+      component: () => import('@/views/RegistrationView.vue'),
+    },
+    {
       path: '/post',
-      name: 'post',
+      name: 'new-post',
       component: () => import('@/views/NewArticle.vue'),
+    },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: () => import('@/views/ArticleView.vue'),
     },
     {
       path: '/users',
