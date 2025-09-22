@@ -1,3 +1,7 @@
+<script setup>
+import { ErrorMessage } from 'vee-validate'
+</script>
+
 <template>
-  <span class="text-sm font-light text-red-400"><slot></slot></span>
+  <ErrorMessage class="text-sm font-light text-red-400" />
 </template>

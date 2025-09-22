@@ -1,3 +1,7 @@
+<script setup>
+import { Field } from 'vee-validate'
+</script>
+
 <template>
-  <input class="w-full rounded-md border border-gray-300 py-2" />
+  <Field class="w-full rounded-md border border-gray-300 px-4 py-2" />
 </template>
