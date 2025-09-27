@@ -9,7 +9,7 @@ const props = defineProps({
 const errorClass = 'text-red-400'
 const successClass = 'text-green-400'
 const warningClass = 'text-yellow-600'
-const infoClass = 'text-sky-500'
+const infoClass = 'text-sky-500 '
 
 const getClass = () => {
   switch (props.type) {

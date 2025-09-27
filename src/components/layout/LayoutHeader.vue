@@ -1,8 +1,27 @@
 <script setup>
 import LayoutContainer from './LayoutContainer.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faBackward, faCode, faUsers, faFile } from '@fortawesome/free-solid-svg-icons'
-import { RouterLink } from 'vue-router'
+import {
+  faBackward,
+  faCode,
+  faUsers,
+  faFile,
+  faArrowRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
+const route = useRoute()
+const router = useRouter()
+
+const handleLogout = async () => {
+  const response = await userStore.logout()
+
+  if (!response.error && route.meta.requiresAuth) {
+    router.push('/')
+  }
+}
 </script>
 <template>
   <header class="fixed top-0 right-0 left-0 z-10 bg-white">
@@ -19,24 +38,34 @@ import { RouterLink } from 'vue-router'
           <p>Разбор ошибок</p>
         </div>
         <div class="flex flex-col items-center">
-          <p class="mb-2">
+          <div class="mb-2">
             <RouterLink
+              v-if="!userStore.isAuthorised"
               to="/login"
               class="rounded-md bg-sky-400 px-5 py-1.5 text-white hover:bg-sky-600"
               aria-label="Страница входа"
-              >Войти</RouterLink
-            >
-          </p>
+              >Войти
+            </RouterLink>
+            <div class="text-right" v-else>
+              <span>{{ userStore.user.login }}</span>
+              &nbsp;|&nbsp;
+              <button @click="handleLogout" class="cursor-pointer hover:text-sky-300">
+                <RouterLink to="/logout" aria-label="Выход"
+                  ><FontAwesomeIcon :icon="faArrowRightFromBracket" class="hover:text-sky-300"
+                /></RouterLink>
+              </button>
+            </div>
+          </div>
           <p>
             <a href="#" @click="$router.go(-1)" aria-label="Назад"
               ><FontAwesomeIcon :icon="faBackward" class="hover:text-sky-300"
             /></a>
             &nbsp;
-            <RouterLink to="/post" aria-label="Новая статья"
+            <RouterLink v-if="userStore.isAuthorised" to="/post" aria-label="Новая статья"
               ><FontAwesomeIcon :icon="faFile" class="hover:text-sky-300"
             /></RouterLink>
             &nbsp;
-            <RouterLink to="/users" aria-label="Пользователи"
+            <RouterLink v-if="userStore.isAuthorised" to="/users" aria-label="Пользователи"
               ><FontAwesomeIcon :icon="faUsers" class="hover:text-sky-300"
             /></RouterLink>
           </p>

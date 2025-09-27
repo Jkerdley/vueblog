@@ -7,13 +7,10 @@ import BaseMessageBox from '@/components/base/BaseMessageBox.vue'
 import { useUserStore } from '@/stores/user'
 import { ErrorMessage, Form } from 'vee-validate'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
 import * as yup from 'yup'
 
 const userStore = useUserStore()
 const errorMesage = ref('')
-const router = useRouter()
 
 const schema = yup.object({
   login: yup.string().required('Логин обязателен').min(3, 'Логин не может быть менее 3х символов'),
