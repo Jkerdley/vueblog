@@ -61,11 +61,17 @@ const handleLogout = async () => {
               ><FontAwesomeIcon :icon="faBackward" class="hover:text-sky-300"
             /></a>
             &nbsp;
-            <RouterLink v-if="userStore.isAuthorised" to="/post" aria-label="Новая статья"
+            <RouterLink
+              v-if="userStore.isAuthorised && userStore.isAdmin"
+              to="/post"
+              aria-label="Новая статья"
               ><FontAwesomeIcon :icon="faFile" class="hover:text-sky-300"
             /></RouterLink>
             &nbsp;
-            <RouterLink v-if="userStore.isAuthorised" to="/users" aria-label="Пользователи"
+            <RouterLink
+              v-if="userStore.isAuthorised && userStore.isAdmin"
+              to="/users"
+              aria-label="Пользователи"
               ><FontAwesomeIcon :icon="faUsers" class="hover:text-sky-300"
             /></RouterLink>
           </p>
