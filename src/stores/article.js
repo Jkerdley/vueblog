@@ -4,22 +4,23 @@ import { ref } from 'vue'
 export const useArticleStore = defineStore('article', () => {
   const article = ref({})
   const isInEditMode = ref(false)
+
   const fetchArticle = async (id) => {
     try {
       const response = await fetch(`/api/posts/${id}`)
-
-      if (!response.ok) {
-        throw new Error('Ошибка получения статьи')
+      if (response.error) {
+        throw new Error(response.error)
       }
-
       const result = await response.json()
 
-      if (result.data) {
+      if (result.error) {
+        throw new Error(result.error)
+      } else {
         article.value = result.data
       }
       return result.data
     } catch (error) {
-      console.error(error)
+      throw new Error(error)
     }
   }
 

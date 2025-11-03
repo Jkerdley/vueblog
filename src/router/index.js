@@ -28,7 +28,7 @@ const router = createRouter({
       path: '/post',
       name: 'new-post',
       component: () => import('@/views/NewArticle.vue'),
-      meta: { requiresAuth: true },
+      meta: { requiresAdmin: true },
     },
     {
       path: '/post/:id',
@@ -41,6 +41,11 @@ const router = createRouter({
       name: 'users',
       component: () => import('@/views/UsersView.vue'),
       meta: { requiresAuth: true },
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: () => import('@/views/NotFoundPage.vue'),
     },
   ],
 })

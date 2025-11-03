@@ -6,10 +6,12 @@ import ArticleForm from '@/components/ArticleForm.vue'
 import LayoutContainer from '@/components/layout/LayoutContainer.vue'
 import { useArticleStore } from '@/stores/article'
 import { useUserStore } from '@/stores/user'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, ref } from 'vue'
+import NotFoundPage from './NotFoundPage.vue'
 
 const articleStore = useArticleStore()
 const userStore = useUserStore()
+const notFound = ref(false)
 
 const props = defineProps({
   id: {
@@ -26,12 +28,18 @@ const dateOptions = {
 }
 
 onBeforeMount(async () => {
-  await articleStore.fetchArticle(props.id)
+  try {
+    await articleStore.fetchArticle(props.id)
+  } catch (error) {
+    notFound.value = true
+    console.log('error HERE', error)
+  }
 })
 </script>
 
 <template>
-  <LayoutContainer class="mt-4">
+  <NotFoundPage v-if="notFound" />
+  <LayoutContainer v-else class="mt-4">
     <ArticleDetailsForm v-if="articleStore.isInEditMode" />
     <ArticleDetails v-else :date-options="dateOptions" />
     <section v-if="!articleStore.isInEditMode && userStore.isAuthorised">
