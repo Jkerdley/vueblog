@@ -5,6 +5,7 @@ import { useArticleStore } from '@/stores/article'
 import { ref } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import { useRouter } from 'vue-router'
+import BaseInput from './base/BaseInput.vue'
 const articleStore = useArticleStore()
 const modalStore = useModalStore()
 const editedArticle = ref({ ...articleStore.article })
@@ -42,28 +43,28 @@ const handleDeleteArticle = () => {
       </div>
     </div>
     <p class="mb-4">
-      <input
+      <BaseInput
+        name="title"
         type="text"
         v-model="editedArticle.title"
         placeholder="Заголовок статьи"
-        class="w-full rounded-md border border-gray-300 p-2"
       />
     </p>
     <p class="mb-4">
-      <input
+      <BaseInput
         type="text"
+        name="imageUrl"
         v-model="editedArticle.imageUrl"
         placeholder="Изображение статьи"
-        class="w-full rounded-md border border-gray-300 p-2"
       />
     </p>
     <p class="mb-4">
-      <textarea
-        name="articleContent"
+      <BaseInput
+        as="textarea"
+        name="content"
         v-model="editedArticle.content"
         placeholder="Контент статьи"
         rows="10"
-        class="w-full rounded-md border border-gray-300 p-2"
       />
     </p>
   </form>
